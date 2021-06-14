@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import torchvision
+import torchvision as tv
 import torchvision.transforms as transforms
 from torchvision.utils import save_image
 import pdb
@@ -60,10 +60,10 @@ transform = transforms.Compose([
     # transforms.Normalize([0.5], [0.5]),
 ])
 
-trainset = torchvision.datasets.MNIST(root='./data', train=True, download=True, transform=transform)
+trainset = tv.datasets.MNIST(root='./data', train=True, download=True, transform=transform)
 trainloader = torch.utils.data.DataLoader(trainset, batch_size=128, shuffle=True)
 
-testset = torchvision.datasets.MNIST(root='./data', train=False, download=True, transform=transform)
+testset = tv.datasets.MNIST(root='./data', train=False, download=True, transform=transform)
 testloader = torch.utils.data.DataLoader(testset, batch_size=100, shuffle=False)
 
 vae = VAE()
@@ -105,4 +105,4 @@ def train(epoch):
 for epoch in range(20):
     train(epoch)
 
-torch.save(vae.state_dict(), './vae.pth')
+    torch.save(vae.state_dict(), './vae.pth')
